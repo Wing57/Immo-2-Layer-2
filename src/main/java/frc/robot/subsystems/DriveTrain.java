@@ -357,8 +357,8 @@ public class DriveTrain extends SubsystemBase {
   @Override
   public void simulationPeriodic() {
     driveSim.setInputs(
-        leftMaster.get() * RobotController.getBatteryVoltage(),
-        rightMaster.get() * RobotController.getBatteryVoltage());
+        leftMaster.getAppliedOutput() * RobotController.getBatteryVoltage(),
+        rightMaster.getAppliedOutput() * RobotController.getBatteryVoltage());
     driveSim.update(0.02);
 
     leftEncoderSim.setDistance(driveSim.getLeftPositionMeters());

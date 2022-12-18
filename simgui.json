@@ -2,6 +2,18 @@
   "NTProvider": {
     "types": {
       "/FMSInfo": "FMSInfo",
+      "/LiveWindow/Ungrouped/ADXRS450_Gyro[0]": "Gyro",
+      "/LiveWindow/Ungrouped/DifferentialDrive[1]": "DifferentialDrive",
+      "/LiveWindow/Ungrouped/PIDController[1]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[2]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[3]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[4]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[5]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[6]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[7]": "PIDController",
+      "/LiveWindow/Ungrouped/PIDController[8]": "PIDController",
+      "/LiveWindow/Ungrouped/Scheduler": "Scheduler",
+      "/LiveWindow/Ungrouped/navX-Sensor[4]": "Gyro",
       "/SmartDashboard/Auton Chooser": "String Chooser",
       "/SmartDashboard/Field": "Field2d",
       "/SmartDashboard/Field Sim": "Field2d",

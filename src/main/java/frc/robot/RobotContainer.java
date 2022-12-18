@@ -81,6 +81,6 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
 
-    return autonChooser.getSelected();
+    return autonChooser.getSelected().andThen(() -> driveTrain.tankDriveVolts(0, 0));
   }
 }
