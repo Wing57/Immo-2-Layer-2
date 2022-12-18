@@ -4,6 +4,13 @@
 
 package frc.robot;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
+import com.pathplanner.lib.PathConstraints;
+import com.pathplanner.lib.PathPlanner;
+import com.pathplanner.lib.PathPlannerTrajectory;
+
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.geometry.Translation2d;
@@ -13,6 +20,7 @@ import edu.wpi.first.math.system.LinearSystem;
 import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.math.util.Units;
+import edu.wpi.first.wpilibj2.command.Command;
 
 public final class Constants {
 
@@ -84,6 +92,12 @@ public final class Constants {
     public static final double kRamseteB = 2.0;
     public static final double kRamseteZeta = 0.7;
 
+    public static HashMap<String, Command> eventMap = new HashMap<String, Command>();
+
     public static final int driveController = 3;
+  }
+
+  public static final class AutoPaths {
+    public static final ArrayList<PathPlannerTrajectory> testGroup = PathPlanner.loadPathGroup("PPath1", new PathConstraints(3, 4));
   }
 }

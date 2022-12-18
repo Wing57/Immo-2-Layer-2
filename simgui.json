@@ -1,0 +1,24 @@
+{
+  "NTProvider": {
+    "types": {
+      "/FMSInfo": "FMSInfo",
+      "/SmartDashboard/Auton Chooser": "String Chooser",
+      "/SmartDashboard/Field": "Field2d",
+      "/SmartDashboard/Field Sim": "Field2d",
+      "/SmartDashboard/PPRamseteCommand_field": "Field2d"
+    },
+    "windows": {
+      "/SmartDashboard/Auton Chooser": {
+        "window": {
+          "visible": true
+        }
+      },
+      "/SmartDashboard/Field Sim": {
+        "image": "C:\\Users\\games\\OneDrive\\Documents\\VS Code\\2022-field.png",
+        "window": {
+          "visible": true
+        }
+      }
+    }
+  }
+}

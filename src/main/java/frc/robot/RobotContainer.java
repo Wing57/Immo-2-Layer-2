@@ -4,13 +4,19 @@
 
 package frc.robot;
 
+import com.pathplanner.lib.auto.PIDConstants;
+import com.pathplanner.lib.auto.RamseteAutoBuilder;
 import com.rambots4571.rampage.joystick.Controller;
 import com.rambots4571.rampage.joystick.Gamepad;
 
+import edu.wpi.first.math.controller.RamseteController;
+import edu.wpi.first.math.controller.SimpleMotorFeedforward;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
-
+import frc.robot.Constants.AutoPaths;
+import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.Settings;
-import frc.robot.commands.auton.FiveBall;
 import frc.robot.commands.drive.ArcadeDriveCommand;
 import frc.robot.commands.drive.TankDriveCommand;
 import frc.robot.subsystems.DriveTrain;
@@ -27,7 +33,10 @@ public class RobotContainer {
   // Commands
   public final TankDriveCommand tankDriveCommand;
   public final ArcadeDriveCommand arcadeDriveCommand;
-  public final FiveBall fiveBall;
+
+  // Other Such Stuff
+  public final RamseteAutoBuilder autoBuilder;
+  SendableChooser<Command> autonChooser;
 
   public RobotContainer() {
     // Subsystems
@@ -36,17 +45,42 @@ public class RobotContainer {
     // Commands
     tankDriveCommand = new TankDriveCommand(driveTrain);
     arcadeDriveCommand = new ArcadeDriveCommand(driveTrain);
-    fiveBall = new FiveBall(this);
 
     driveTrain.setDefaultCommand(tankDriveCommand);
 
+    // Other Such Stuff
+    autoBuilder = new RamseteAutoBuilder(
+      driveTrain::getPose, 
+      driveTrain::resetOdometry, 
+      new RamseteController(Settings.kRamseteB, Settings.kRamseteZeta), 
+      DriveConstants.kDriveKinematics, 
+      new SimpleMotorFeedforward(
+            DriveConstants.ksVolts,
+            DriveConstants.kvVoltSecondsPerMeter,
+            DriveConstants.kaVoltSecondsSquaredPerMeter), 
+            driveTrain::getWheelSpeeds, 
+            new PIDConstants(DriveConstants.kPDriveVel, 0, 0),
+            driveTrain::tankDriveVolts, 
+            Settings.eventMap, 
+            driveTrain);
+
+    autonChooser = new SendableChooser<>();
+    autonChooser.addOption("Test Path", autoBuilder.fullAuto(AutoPaths.testGroup));
+    SmartDashboard.putData("Auton Chooser", autonChooser);
+    
+    setEventMap();
+
     configureButtonBindings();
+  }
+
+  public void setEventMap() {
+    // Empty till I get commands
   }
 
   private void configureButtonBindings() {}
 
   public Command getAutonomousCommand() {
 
-    return fiveBall;
+    return autonChooser.getSelected();
   }
 }

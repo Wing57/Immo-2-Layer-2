@@ -54,7 +54,7 @@ def includeDesktopSupport = false
 dependencies {
     implementation wpi.java.deps.wpilib()
     implementation wpi.java.vendor.java()
-    implementation 'com.github.rambots:rampage:v2022.12.1'
+    implementation 'com.github.rambots:rampage:v2022.12.2'
     implementation 'com.github.StuyPulse:StuyLib:2022.8.0'
     
     roborioDebug wpi.java.deps.wpilibJniDebug(wpi.platforms.roborio)
