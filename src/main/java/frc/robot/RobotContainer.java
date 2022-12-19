@@ -65,7 +65,7 @@ public class RobotContainer {
             driveTrain);
 
     autonChooser = new SendableChooser<>();
-    autonChooser.addOption("Test Path", autoBuilder.fullAuto(AutoPaths.testGroup));
+    autonChooser.addOption("Test Path", autoBuilder.fullAuto(AutoPaths.testGroup).andThen(() -> driveTrain.tankDriveVolts(0, 0)));
     SmartDashboard.putData("Auton Chooser", autonChooser);
     
     setEventMap();
@@ -81,6 +81,6 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
 
-    return autonChooser.getSelected().andThen(() -> driveTrain.tankDriveVolts(0, 0));
+    return autonChooser.getSelected();
   }
 }
