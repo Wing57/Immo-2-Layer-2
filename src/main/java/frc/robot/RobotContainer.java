@@ -17,6 +17,7 @@ import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.Constants.AutoPaths;
 import frc.robot.Constants.DriveConstants;
 import frc.robot.Constants.Settings;
+import frc.robot.commands.auton.DriveTimedCommand;
 import frc.robot.commands.drive.ArcadeDriveCommand;
 import frc.robot.commands.drive.TankDriveCommand;
 import frc.robot.subsystems.DriveTrain;
@@ -66,6 +67,7 @@ public class RobotContainer {
 
     autonChooser = new SendableChooser<>();
     autonChooser.addOption("Test Path", autoBuilder.fullAuto(AutoPaths.testGroup).andThen(() -> driveTrain.tankDriveVolts(0, 0)));
+    autonChooser.addOption("Drive Forward", new DriveTimedCommand(driveTrain, 4));
     SmartDashboard.putData("Auton Chooser", autonChooser);
     
     setEventMap();

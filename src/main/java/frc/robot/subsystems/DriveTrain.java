@@ -354,6 +354,7 @@ public class DriveTrain extends SubsystemBase {
     fieldSim.setRobotPose(getPose());
   }
 
+  // motor.get() Isnt compatible with complex autons, getAppliedOutput() isnt compatible with telop
   @Override
   public void simulationPeriodic() {
     driveSim.setInputs(
