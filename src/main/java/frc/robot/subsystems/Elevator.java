@@ -23,18 +23,25 @@ public class Elevator extends SubsystemBase {
   }
 
   private Elevator() {
-    baseMotorMaster = new WPI_TalonFX(Cvator.baseMotorMaster);
-    baseMotorFollower = new WPI_TalonFX(Cvator.baseMotorFollower);
+    baseMotorMaster = new WPI_TalonFX(Cvator.BASE_MOTOR_MASTER);
+    baseMotorFollower = new WPI_TalonFX(Cvator.BASE_MOTOR_FOLLOWER);
 
     allMotors = Arrays.asList(baseMotorMaster, baseMotorFollower);
 
     allMotors.forEach(
         motor -> {
           motor.configFactoryDefault();
-          motor.setNeutralMode(Cvator.EL_MODE);
+          motor.setNeutralMode(Cvator.MODE);
           motor.configOpenloopRamp(Cvator.rampRate, Settings.timeoutMs);
           motor.configStatorCurrentLimit(Cvator.statorLimit);
           motor.configSupplyCurrentLimit(Cvator.supplyLimit);
         });
+    
+    baseMotorMaster.setInverted(Cvator.masterInvert);
+    baseMotorFollower.setInverted(Cvator.followerInvert);
+
+    baseMotorFollower.follow(baseMotorMaster);
+
+    limitSwitch = new DigitalInput(Cvator.LIMITSWITCH);
   }
 }

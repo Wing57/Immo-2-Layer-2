@@ -7,6 +7,7 @@ package frc.robot;
 import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
 import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.TalonFXInvertType;
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
@@ -86,12 +87,17 @@ public final class Constants {
   }
 
   public static final class Cvator {
-    public static final int baseMotorMaster = 7;
-    public static final int baseMotorFollower = 8;
+    public static final int BASE_MOTOR_MASTER = 7;
+    public static final int BASE_MOTOR_FOLLOWER = 8;
+
+    public static final int LIMITSWITCH = 0;
 
     public static final double rampRate = 0.15;
 
-    public static final NeutralMode EL_MODE = NeutralMode.Brake;
+    public static final NeutralMode MODE = NeutralMode.Brake;
+
+    public static final TalonFXInvertType masterInvert = TalonFXInvertType.Clockwise;
+    public static final TalonFXInvertType followerInvert = TalonFXInvertType.CounterClockwise;
 
     public static final StatorCurrentLimitConfiguration statorLimit =
         new StatorCurrentLimitConfiguration(true, 40, 70, 2);
