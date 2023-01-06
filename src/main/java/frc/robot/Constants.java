@@ -4,9 +4,9 @@
 
 package frc.robot;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.motorcontrol.StatorCurrentLimitConfiguration;
+import com.ctre.phoenix.motorcontrol.SupplyCurrentLimitConfiguration;
 import com.pathplanner.lib.PathConstraints;
 import com.pathplanner.lib.PathPlanner;
 import com.pathplanner.lib.PathPlannerTrajectory;
@@ -21,6 +21,9 @@ import edu.wpi.first.math.system.plant.DCMotor;
 import edu.wpi.first.math.system.plant.LinearSystemId;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.wpilibj2.command.Command;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class Constants {
 
@@ -76,11 +79,25 @@ public final class Constants {
             kvVoltSecondsPerRadian,
             kaVoltSecondsSquaredPerRadian);
 
-    // Example values only -- use what's on your physical robot!
     public static final DCMotor kDriveGearbox = DCMotor.getNEO(3);
 
     // Drivetrain Speed
     public static final double DRIVETRAINSPEED = 1;
+  }
+
+  public static final class Cvator {
+    public static final int baseMotorMaster = 7;
+    public static final int baseMotorFollower = 8;
+
+    public static final double rampRate = 0.15;
+
+    public static final NeutralMode EL_MODE = NeutralMode.Brake;
+
+    public static final StatorCurrentLimitConfiguration statorLimit =
+        new StatorCurrentLimitConfiguration(true, 40, 70, 2);
+
+    public static final SupplyCurrentLimitConfiguration supplyLimit =
+        new SupplyCurrentLimitConfiguration(true, 40, 60, 4);
   }
 
   public static final class Settings {
@@ -94,10 +111,14 @@ public final class Constants {
 
     public static HashMap<String, Command> eventMap = new HashMap<String, Command>();
 
+    public static final int timeoutMs = 10;
+    public static final int k100msPerSec = 10;
+
     public static final int driveController = 3;
   }
 
   public static final class AutoPaths {
-    public static final ArrayList<PathPlannerTrajectory> testGroup = PathPlanner.loadPathGroup("PPath1", new PathConstraints(3, 4));
+    public static final ArrayList<PathPlannerTrajectory> testGroup =
+        PathPlanner.loadPathGroup("PPath1", new PathConstraints(3, 4));
   }
 }
