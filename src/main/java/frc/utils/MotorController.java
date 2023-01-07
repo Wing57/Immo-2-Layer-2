@@ -58,6 +58,7 @@ public class MotorController implements Sendable {
    *
    * @param rpm
    */
+  //TODO: Create position tolerance
   public void setTolerance(double rpm) {
     toleranceRPM = rpm;
     motor.configAllowableClosedloopError(kPIDLoopIdx, convertRPMToRaw(rpm));
